@@ -19,6 +19,9 @@ namespace Ubs
 
             foreach (var word in words)
             {
+                if(string.IsNullOrEmpty(word))
+                    continue;
+               
                 if (result.ContainsKey(word))
                 {
                     var count = result[word];
@@ -44,9 +47,10 @@ namespace Ubs
         /// <returns></returns>
         private static IEnumerable<string> SplitSentenceIntoWords(string str)
         {
+         
             var specialChars = str.Where(char.IsPunctuation).Distinct().ToArray();
-
             var words = str.Split().Select(x => x.Trim(specialChars)).Select(x => x.ToLower());
+           
             return words;
         }
       
